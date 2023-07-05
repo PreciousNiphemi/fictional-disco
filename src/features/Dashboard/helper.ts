@@ -31,3 +31,17 @@ export const getGreeting = (): string => {
     return "Good evening";
   }
 };
+
+export const restructureData = (originalData) => {
+  const convertedData = Object.entries(originalData).map(([key, value]) => ({
+    name: new Date(key).toLocaleDateString("en-US", {
+      month: "short",
+      day: "numeric",
+    }),
+    uv: value,
+    pv: value * 0.6, // Example calculation, adjust as needed
+    amt: value * 0.6, // Example calculation, adjust as needed
+  }));
+
+  return convertedData;
+};

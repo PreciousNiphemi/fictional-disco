@@ -12,7 +12,7 @@ export const Dashboard = () => {
     getDashboardData()
   );
 
-  console.log("THIS DATA", data);
+  //   console.log("THIS DATA", restructureData(data?.data?.graph_data));
   return (
     <Flex width="auto" flexDirection="column" flex={1}>
       <Flex justifyContent="space-between" alignItems="center">
@@ -41,6 +41,7 @@ export const Dashboard = () => {
         {daysFilter.map((filter) => {
           return (
             <Box
+              key={filter.name}
               borderWidth="1px"
               py="3px"
               px="1rem"
