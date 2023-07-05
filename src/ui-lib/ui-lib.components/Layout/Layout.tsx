@@ -5,12 +5,10 @@ import { Box, BoxProps, useDisclosure } from "@chakra-ui/react";
 
 type LayoutProps = {
   children: React.ReactNode;
-  variant: "app" | "onboarding";
   bg?: string;
 };
 export const Layout = ({
   children,
-  variant,
   bg,
   ...restProps
 }: LayoutProps & Partial<BoxProps>) => {
@@ -46,7 +44,7 @@ export const Layout = ({
             <Box
               mx="auto"
               maxWidth="100vw"
-              padding={{ base: 4, md: 6, lg: 10 }}
+              paddingX={{ base: 4, md: 6, lg: 10 }}
             >
               {children}
             </Box>

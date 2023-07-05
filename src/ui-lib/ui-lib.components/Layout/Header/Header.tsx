@@ -7,14 +7,7 @@ type HeaderProps = {
 
 export const Header = ({ sidebarOpen, setSidebarOpen }: HeaderProps) => {
   return (
-    <Box
-      top="0"
-      boxShadow="md"
-      minHeight="78px"
-      position="sticky"
-      alignItems="center"
-      dropShadow="#BDC6D333"
-    >
+    <Box top="0" minHeight="78px" position="sticky" alignItems="center">
       <Flex
         as="nav"
         alignItems="center"
@@ -45,22 +38,6 @@ export const Header = ({ sidebarOpen, setSidebarOpen }: HeaderProps) => {
                 Dashboard
               </Text>
             </Box>
-          </Flex>
-          <Flex alignItems="center" gap={{ base: "4" }}>
-            <Box
-              display="flex"
-              borderWidth="1px"
-              padding="8px"
-              borderColor="#ECF0F1"
-              boxSize={{ base: "40px" }}
-              borderRadius={{ base: "29px" }}
-            >
-              <img
-                src="/images/icons/BellOutline.svg"
-                alt="Notification icon"
-              />
-            </Box>
-            <Text>HELLOOO?</Text>
           </Flex>
         </Flex>
       </Flex>
