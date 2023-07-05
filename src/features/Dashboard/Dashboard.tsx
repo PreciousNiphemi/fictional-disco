@@ -1,9 +1,16 @@
 import { useState } from "react";
 import { Box, Flex, Text } from "@chakra-ui/react";
-import { daysFilter, getGreeting } from "./helper";
+import { daysFilter, getGreeting, restructureData } from "./helper";
 import { useQuery } from "react-query";
 import { getDashboardData } from "@/operations/dashboardData";
-import { LineChart, Line, CartesianGrid, XAxis, YAxis } from "recharts";
+import {
+  AreaChart,
+  Area,
+  Tooltip,
+  CartesianGrid,
+  XAxis,
+  YAxis,
+} from "recharts";
 
 export const Dashboard = () => {
   const [activeFilter, setActiveFilter] = useState("All Time");
@@ -12,7 +19,7 @@ export const Dashboard = () => {
     getDashboardData()
   );
 
-  //   console.log("THIS DATA", restructureData(data?.data?.graph_data));
+  //   console.log("THIS DATA", restructureData(data?.data?.graph_data?.views));
   return (
     <Flex width="auto" flexDirection="column" flex={1}>
       <Flex justifyContent="space-between" alignItems="center">
@@ -57,15 +64,29 @@ export const Dashboard = () => {
           );
         })}
       </Flex>
-
-      <Flex mt={{ base: "6", md: "14" }}>
-        {}
-        <LineChart data={data?.data?.graph_data}>
-          <Line type="monotone" dataKey="uv" stroke="#8884d8" />
-          <CartesianGrid stroke="#ccc" />
+      <Flex overflowX={"scroll"} mt={{ base: "4", md: "5rem" }}>
+        <AreaChart
+          width={500}
+          height={400}
+          data={restructureData(data?.data?.graph_data?.views)}
+          margin={{
+            top: 10,
+            right: 30,
+            left: 0,
+            bottom: 0,
+          }}
+        >
+          <CartesianGrid strokeDasharray="3 3" />
           <XAxis dataKey="name" />
           <YAxis />
-        </LineChart>
+          <Tooltip />
+          <Area
+            type="monotone"
+            dataKey="uv"
+            stroke="#FF5403"
+            fill="#FF540333"
+          />
+        </AreaChart>
       </Flex>
     </Flex>
   );

@@ -1,3 +1,27 @@
+type ConvertedData = {
+  name: string;
+  uv: number;
+  pv: number;
+  amt: number;
+};
+type OriginalData = Record<string, number>;
+
+export const restructureData = (originalData: OriginalData) => {
+  const convertedData: ConvertedData[] = Object?.entries(originalData).map(
+    ([key, value]): ConvertedData => ({
+      name: new Date(key).toLocaleDateString("en-US", {
+        month: "short",
+        day: "numeric",
+      }),
+      uv: value * 150,
+      pv: value * 50,
+      amt: value * 10,
+    })
+  );
+
+  return convertedData;
+};
+
 export const daysFilter = [
   {
     name: "1 Day",
@@ -32,16 +56,10 @@ export const getGreeting = (): string => {
   }
 };
 
-// export const restructureData = (originalData) => {
-//   const convertedData = Object.entries(originalData).map(([key, value]) => ({
-//     name: new Date(key).toLocaleDateString("en-US", {
-//       month: "short",
-//       day: "numeric",
-//     }),
-//     uv: value,
-//     pv: value * 0.6, // Example calculation, adjust as needed
-//     amt: value * 0.6, // Example calculation, adjust as needed
-//   }));
-
-//   return convertedData;
-// };
+// const data = [
+//     { name: 'Group A', value: 400 },
+//     { name: 'Group B', value: 300 },
+//     { name: 'Group C', value: 300 },
+//     { name: 'Group D', value: 200 },
+//   ];
+//   const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
